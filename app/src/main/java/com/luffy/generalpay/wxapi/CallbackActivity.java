@@ -37,9 +37,7 @@ public class CallbackActivity extends Activity implements IOpenApiListener {
 
     @Override
     public void onOpenResponse(BaseResponse response) {
-        if (response == null) {
-            return;
-        } else {
+        if (response != null) {
             if (response instanceof PayResponse) {
                 finish();
                 PayResponse payResponse = (PayResponse) response;

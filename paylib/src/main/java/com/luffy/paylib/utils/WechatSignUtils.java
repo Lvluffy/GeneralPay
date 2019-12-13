@@ -3,7 +3,6 @@ package com.luffy.paylib.utils;
 import com.luffy.paylib.payType.wechat.WeChatPayParameter;
 import com.tencent.mm.opensdk.modelpay.PayReq;
 
-import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 import java.util.SortedMap;
@@ -33,15 +32,14 @@ public class WechatSignUtils {
         request.nonceStr = weChatPayParameter.getNonceStr();
         request.timeStamp = weChatPayParameter.getTimestamp();
         //把参数的值传进去SortedMap集合里面
-        SortedMap<Object, Object> parameters = new TreeMap<Object, Object>();
+        SortedMap<Object, Object> parameters = new TreeMap<>();
         parameters.put("appid", request.appId);
         parameters.put("noncestr", request.nonceStr);
         parameters.put("package", request.packageValue);
         parameters.put("partnerid", request.partnerId);
         parameters.put("prepayid", request.prepayId);
         parameters.put("timestamp", request.timeStamp);
-        String sign = createSign("UTF-8", parameters, wechatKey);
-        return sign;
+        return createSign("UTF-8", parameters, wechatKey);
     }
 
     /**
@@ -53,21 +51,19 @@ public class WechatSignUtils {
      * @return
      */
     private static String createSign(String characterEncoding, SortedMap<Object, Object> parameters, String wechatKey) {
-        StringBuffer mStringBuffer = new StringBuffer();
+        StringBuilder mStringBuffer = new StringBuilder();
         Set mSet = parameters.entrySet();// 所有参与传参的参数按照accsii排序（升序）
-        Iterator it = mSet.iterator();
-        while (it.hasNext()) {
+        for (Object aMSet : mSet) {
             @SuppressWarnings("rawtypes")
-            Map.Entry entry = (Map.Entry) it.next();
+            Map.Entry entry = (Map.Entry) aMSet;
             String key = (String) entry.getKey();
             Object value = entry.getValue();
             if (null != value && !"".equals(value) && !"sign".equals(key) && !"key".equals(key)) {
-                mStringBuffer.append(key + "=" + value + "&");
+                mStringBuffer.append(key).append("=").append(value).append("&");
             }
         }
-        mStringBuffer.append("key=" + wechatKey);
-        String sign = WechatMD5Utils.MD5Encode(mStringBuffer.toString(), characterEncoding).toUpperCase();
-        return sign;
+        mStringBuffer.append("key=").append(wechatKey);
+        return WechatMD5Utils.MD5Encode(mStringBuffer.toString(), characterEncoding).toUpperCase();
     }
 
 }

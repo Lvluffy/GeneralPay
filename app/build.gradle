@@ -39,7 +39,7 @@ android {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     /**support*/
-    compile 'com.android.support.constraint:constraint-layout:1.1.2'
+    compile 'com.android.support.constraint:constraint-layout:1.1.3'
     compile "com.android.support:appcompat-v7:$rootProject.supportVersion"
     /**butterknife*/
     compile 'com.jakewharton:butterknife:8.8.1'
