@@ -1,14 +1,14 @@
 apply plugin: 'com.android.application'
 android {
-    compileSdkVersion rootProject.ext.compileSdkVersion
-    buildToolsVersion rootProject.ext.buildToolsVersion
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    buildToolsVersion rootProject.ext.android.buildToolsVersion
     /**默认-选项配置*/
     defaultConfig {
-        applicationId rootProject.ext.applicationId
-        minSdkVersion rootProject.ext.minSdkVersion
-        targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode rootProject.ext.versionCode
-        versionName rootProject.ext.versionName
+        applicationId rootProject.ext.android.applicationId
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
+        versionCode rootProject.ext.android.versionCode
+        versionName rootProject.ext.android.versionName
         ndk {
             /*设置支持的SO库架构（arm64、armeabi、armeabi-v7a、x86、x86_64）*/
             abiFilters 'armeabi-v7a'
@@ -34,16 +34,20 @@ android {
         checkReleaseBuilds false
         abortOnError false
     }
+    /**编译选项*/
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    /**support*/
-    compile 'com.android.support.constraint:constraint-layout:1.1.3'
-    compile "com.android.support:appcompat-v7:$rootProject.supportVersion"
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    /**support库*/
+    api rootProject.ext.supportLibs
     /**butterknife*/
-    compile 'com.jakewharton:butterknife:8.8.1'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+    implementation 'com.jakewharton:butterknife:9.0.0'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:9.0.0'
     /**paylib*/
-    compile project(':paylib')
+    implementation project(':paylib')
 }
