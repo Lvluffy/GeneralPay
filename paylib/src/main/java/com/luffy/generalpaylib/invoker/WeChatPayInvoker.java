@@ -1,9 +1,9 @@
-package com.luffy.paylib.invoker;
+package com.luffy.generalpaylib.invoker;
 
 import android.content.Context;
 import android.widget.Toast;
 
-import com.luffy.paylib.payType.wechat.WeChatPayParameter;
+import com.luffy.generalpaylib.payType.wechat.WeChatPayParameter;
 import com.tencent.mm.opensdk.modelpay.PayReq;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;

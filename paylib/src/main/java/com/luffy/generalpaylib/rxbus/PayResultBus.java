@@ -1,4 +1,4 @@
-package com.luffy.paylib.rxbus;
+package com.luffy.generalpaylib.rxbus;
 
 /**
  * Created by lvlufei on 2018/7/11

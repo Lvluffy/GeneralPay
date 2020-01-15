@@ -6,11 +6,11 @@ import android.view.View;
 
 import com.luffy.generalpay.R;
 import com.luffy.generalpay.constants.ConstantsHelper;
-import com.luffy.paylib.constants.PayConstants;
-import com.luffy.paylib.invoker.QQWalletPayInvoker;
-import com.luffy.paylib.invoker.WeChatPayInvoker;
-import com.luffy.paylib.payType.qqWallet.QQWalletPayParameter;
-import com.luffy.paylib.payType.wechat.WeChatPayParameter;
+import com.luffy.generalpaylib.constants.PayConstants;
+import com.luffy.generalpaylib.invoker.QQWalletPayInvoker;
+import com.luffy.generalpaylib.invoker.WeChatPayInvoker;
+import com.luffy.generalpaylib.payType.qqWallet.QQWalletPayParameter;
+import com.luffy.generalpaylib.payType.wechat.WeChatPayParameter;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;

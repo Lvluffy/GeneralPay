@@ -1,4 +1,4 @@
-package com.luffy.paylib.payType.qqWallet;
+package com.luffy.generalpaylib.payType.qqWallet;
 
 import java.io.Serializable;
 

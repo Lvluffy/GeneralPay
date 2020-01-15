@@ -1,4 +1,4 @@
-package com.luffy.paylib.payType.wechat;
+package com.luffy.generalpaylib.payType.wechat;
 
 import java.io.Serializable;
 

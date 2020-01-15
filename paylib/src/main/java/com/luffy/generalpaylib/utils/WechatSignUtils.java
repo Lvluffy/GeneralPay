@@ -1,6 +1,6 @@
-package com.luffy.paylib.utils;
+package com.luffy.generalpaylib.utils;
 
-import com.luffy.paylib.payType.wechat.WeChatPayParameter;
+import com.luffy.generalpaylib.payType.wechat.WeChatPayParameter;
 import com.tencent.mm.opensdk.modelpay.PayReq;
 
 import java.util.Map;

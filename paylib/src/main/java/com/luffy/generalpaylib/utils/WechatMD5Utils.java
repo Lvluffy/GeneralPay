@@ -1,4 +1,4 @@
-package com.luffy.paylib.utils;
+package com.luffy.generalpaylib.utils;
 
 import java.security.MessageDigest;
 

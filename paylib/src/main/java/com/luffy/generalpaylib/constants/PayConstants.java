@@ -1,4 +1,4 @@
-package com.luffy.paylib.constants;
+package com.luffy.generalpaylib.constants;
 
 /**
  * Created by lvlufei on 2018/7/9

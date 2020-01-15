@@ -1,4 +1,4 @@
-package com.luffy.paylib.payType.ali;
+package com.luffy.generalpaylib.payType.ali;
 
 import java.io.Serializable;
 

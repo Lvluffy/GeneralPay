@@ -1,9 +1,9 @@
-package com.luffy.paylib.invoker;
+package com.luffy.generalpaylib.invoker;
 
 import android.content.Context;
 import android.widget.Toast;
 
-import com.luffy.paylib.payType.qqWallet.QQWalletPayParameter;
+import com.luffy.generalpaylib.payType.qqWallet.QQWalletPayParameter;
 import com.tencent.mobileqq.openpay.api.IOpenApi;
 import com.tencent.mobileqq.openpay.api.OpenApiFactory;
 import com.tencent.mobileqq.openpay.data.pay.PayApi;
