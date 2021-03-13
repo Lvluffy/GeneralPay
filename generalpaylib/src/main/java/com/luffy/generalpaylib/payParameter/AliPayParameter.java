@@ -1,4 +1,4 @@
-package com.luffy.generalpaylib.payType.ali;
+package com.luffy.generalpaylib.payParameter;
 
 import java.io.Serializable;
 
@@ -12,9 +12,6 @@ public class AliPayParameter implements Serializable {
     /*订单信息*/
     private String orderInfo;
 
-    public AliPayParameter() {
-    }
-
     /**
      * @param orderInfo 订单信息
      */
@@ -26,7 +23,4 @@ public class AliPayParameter implements Serializable {
         return orderInfo;
     }
 
-    public void setOrderInfo(String orderInfo) {
-        this.orderInfo = orderInfo;
-    }
 }

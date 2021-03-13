@@ -41,4 +41,6 @@ dependencies {
     api fileTree(dir: 'libs', include: ['*.jar'])
     /**微信支付<包含统计功能---Android Studio环境下：已改用gradle形式，发布到jcenter>*/
     compile 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:1.3.4'
+    /**支付宝支付*/
+    compile(name: 'alipaySdk-15.6.5-20190718211159-noUtdid', ext: 'aar')
 }

@@ -1,44 +1,27 @@
-package com.luffy.generalpaylib.invoker;
+package com.luffy.generalpaylib;
 
-import android.content.Context;
+import android.app.Activity;
+import android.os.Bundle;
 import android.widget.Toast;
 
-import com.luffy.generalpaylib.payType.wechat.WeChatPayParameter;
+import com.luffy.generalpaylib.payParameter.WeChatPayParameter;
 import com.tencent.mm.opensdk.modelpay.PayReq;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 import com.tencent.mm.opensdk.utils.Log;
 
 /**
- * Created by lvlufei on 2017/7/10
+ * Created by lvlufei on 2021-03-14
  *
- * @desc 微信支付-帮助类
+ * @name 微信支付
  */
-public class WeChatPayInvoker {
+public class WeChatPay implements IPay {
 
-    private static WeChatPayInvoker mPayHelper;
-
-    private WeChatPayInvoker() {
-    }
-
-    public static WeChatPayInvoker getInstance() {
-        synchronized (WeChatPayInvoker.class) {
-            if (mPayHelper == null) {
-                mPayHelper = new WeChatPayInvoker();
-            }
-        }
-        return mPayHelper;
-    }
-
-    /**
-     * 微信支付
-     *
-     * @param mContext
-     * @param weChatPayParameter
-     */
-    public void WeChatPay(Context mContext, WeChatPayParameter weChatPayParameter) {
+    @Override
+    public void pay(Activity context, Bundle extras) {
+        WeChatPayParameter weChatPayParameter = (WeChatPayParameter) extras.getSerializable(PayExtra.extras_pay_parameter);
         /*注册微信支付*/
-        IWXAPI iwxapi = WXAPIFactory.createWXAPI(mContext, null);
+        IWXAPI iwxapi = WXAPIFactory.createWXAPI(context, null);
         iwxapi.registerApp(weChatPayParameter.getAppId());
         /*请求微信支付*/
         PayReq request = new PayReq();
@@ -52,7 +35,7 @@ public class WeChatPayInvoker {
         if (weChatCheckArgs(request)) {
             iwxapi.sendReq(request);
         } else {
-            Toast.makeText(mContext, "微信支付缺少参数，请通过商户业务接口获取。", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "微信支付缺少参数，请通过商户业务接口获取。", Toast.LENGTH_SHORT).show();
         }
     }
 

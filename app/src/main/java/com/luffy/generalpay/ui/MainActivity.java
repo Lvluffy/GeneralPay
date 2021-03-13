@@ -6,11 +6,11 @@ import android.view.View;
 
 import com.luffy.generalpay.R;
 import com.luffy.generalpay.constants.ConstantsHelper;
-import com.luffy.generalpaylib.constants.PayConstants;
-import com.luffy.generalpaylib.invoker.QQWalletPayInvoker;
-import com.luffy.generalpaylib.invoker.WeChatPayInvoker;
-import com.luffy.generalpaylib.payType.qqWallet.QQWalletPayParameter;
-import com.luffy.generalpaylib.payType.wechat.WeChatPayParameter;
+import com.luffy.generalpaylib.PayExtra;
+import com.luffy.generalpaylib.PayFactory;
+import com.luffy.generalpaylib.PayType;
+import com.luffy.generalpaylib.payParameter.QQWalletPayParameter;
+import com.luffy.generalpaylib.payParameter.WeChatPayParameter;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -26,37 +26,36 @@ public class MainActivity extends AppCompatActivity {
 
     @OnClick({R.id.btn_wx_pay, R.id.btn_qq_pay})
     public void onViewClicked(View view) {
-        switch (view.getId()) {
+        int id = view.getId();
+        if (id == R.id.btn_wx_pay) {
             /*微信支付*/
-            case R.id.btn_wx_pay:
-                WeChatPayParameter weChatPayParameter = new WeChatPayParameter(
-                        ConstantsHelper.Wechat.APPID,
-                        ConstantsHelper.Wechat.PARTNERID,
-                        "",
-                        PayConstants.Wechat.PACKAGE_VALUE,
-                        "",
-                        "",
-                        "",
-                        "");
-                WeChatPayInvoker.getInstance().WeChatPay(MainActivity.this, weChatPayParameter);
-                break;
+            Bundle extras = new Bundle();
+            extras.putSerializable(PayExtra.extras_pay_parameter, new WeChatPayParameter(
+                    ConstantsHelper.Wechat.APPID,
+                    ConstantsHelper.Wechat.PARTNERID,
+                    "",
+                    "",
+                    "",
+                    "",
+                    ""));
+            PayFactory.getInstance().getIPay(PayType.wx).pay(this, extras);
+        } else if (id == R.id.btn_qq_pay) {
             /*QQ钱包支付*/
-            case R.id.btn_qq_pay:
-                QQWalletPayParameter qqWalletPayParameter = new QQWalletPayParameter(
-                        ConstantsHelper.TencentQQ.APPID,
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "0",
-                        "",
-                        "");
-                QQWalletPayInvoker.getInstance().QQWalletPay(MainActivity.this, qqWalletPayParameter);
-                break;
+            Bundle extras = new Bundle();
+            extras.putSerializable(PayExtra.extras_pay_parameter, new QQWalletPayParameter(
+                    ConstantsHelper.TencentQQ.APPID,
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "0",
+                    "",
+                    ""));
+            PayFactory.getInstance().getIPay(PayType.qq).pay(this, extras);
         }
     }
 }
